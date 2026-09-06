@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thoughts — Vijay Surisetty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">Vijay <span class="accent">Surisetty</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="journey.html">My Journey</a></li>
+      <li><a href="work.html">Work I'm Proud Of</a></li>
+      <li><a href="thoughts.html" aria-current="page">Thoughts</a></li>
+      <li><a href="subscribe.html">Subscribe</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1 style="font-size: clamp(2rem, 4.5vw, 2.8rem);">Thoughts</h1>
+      <div class="thoughts-empty measure">
+        <p class="hero-lede">This is where I'll write, occasionally, about technology, business, processes, AI and the ideas I'm exploring. It's meant to become a long-term archive of how my thinking develops — not a content calendar.</p>
+        <p>Nothing here yet. Check back, or <a href="subscribe.html">subscribe</a> to hear when the first piece goes up.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© <span id="year"></span> Vijay Surisetty</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/surisettyvijay/">LinkedIn</a>
+      <a href="mailto:you@example.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

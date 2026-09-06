@@ -1,0 +1,235 @@
+/* ============================================
+   Design tokens
+   ============================================ */
+:root {
+  --paper: #FAF7F2;
+  --paper-raised: #FFFFFF;
+  --ink: #1C2230;
+  --ink-soft: #454C5C;
+  --muted: #767C89;
+  --line: #E3DDD1;
+  --rust: #BD5B38;
+  --rust-deep: #97452A;
+  --gold: #C99A3D;
+
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --measure: 42rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--rust-deep); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--rust); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; }
+img { max-width: 100%; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  color: var(--ink);
+  line-height: 1.12;
+  margin: 0;
+  font-weight: 600;
+}
+
+p { margin: 0 0 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+.wrap { max-width: 72rem; margin: 0 auto; padding: 0 var(--gutter); }
+.measure { max-width: var(--measure); }
+
+/* ============================================
+   Header / nav
+   ============================================ */
+.site-header { padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+
+.brand { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--ink); text-decoration: none; }
+.brand .accent { color: var(--rust); }
+
+.nav-links { display: flex; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
+.nav-links a { color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; }
+.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--rust-deep); }
+
+.nav-toggle {
+  display: none; background: none; border: 1px solid var(--line); border-radius: 4px;
+  padding: 0.4rem 0.6rem; font-size: 0.9rem; font-family: var(--sans); color: var(--ink);
+}
+
+@media (max-width: 680px) {
+  .nav-toggle { display: inline-block; }
+  .nav-links {
+    position: absolute; top: 100%; left: 0; right: 0; background: var(--paper-raised);
+    border-bottom: 1px solid var(--line); flex-direction: column; gap: 0; padding: 0.5rem 0; display: none;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { padding: 0.6rem var(--gutter); border-top: 1px solid var(--line); }
+  .nav-links li:first-child { border-top: none; }
+  .site-header { position: relative; }
+}
+
+/* ============================================
+   Hero
+   ============================================ */
+.hero { padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem); }
+.hero-name { font-size: clamp(2.4rem, 6vw, 3.8rem); }
+.hero-position {
+  margin-top: 0.6rem; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--rust-deep); font-weight: 600;
+}
+.hero-lede { margin-top: 1.5rem; font-size: 1.18rem; color: var(--ink-soft); max-width: 42ch; }
+
+/* ============================================
+   Pathways (homepage)
+   ============================================ */
+.pathways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+@media (max-width: 800px) { .pathways { grid-template-columns: 1fr; } }
+
+.pathway-card {
+  display: block; text-decoration: none; color: inherit;
+  border-top: 2px solid var(--ink); padding: 1.5rem 0 0;
+}
+.pathway-card:nth-child(2) { border-top-color: var(--rust); }
+.pathway-card:nth-child(3) { border-top-color: var(--gold); }
+.pathway-card h3 { font-size: 1.3rem; margin-bottom: 0.6rem; }
+.pathway-card p { color: var(--ink-soft); font-size: 0.98rem; }
+.pathway-card .go { display: inline-block; margin-top: 0.9rem; font-size: 0.92rem; color: var(--rust-deep); }
+.pathway-card:hover h3 { color: var(--rust-deep); }
+
+/* ============================================
+   Section rhythm
+   ============================================ */
+section { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+section + section { border-top: 1px solid var(--line); }
+
+.section-head { margin-bottom: 2.2rem; }
+.section-head h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.section-head .sub { margin-top: 0.6rem; color: var(--ink-soft); font-size: 1.05rem; max-width: 46ch; }
+
+/* ============================================
+   Journey — horizontal pathway
+   ============================================ */
+.journey-track {
+  display: flex; gap: 0; overflow-x: auto; padding-bottom: 1.5rem; margin: 0 calc(var(--gutter) * -1);
+  padding-left: var(--gutter); padding-right: var(--gutter); scroll-snap-type: x proximity;
+}
+.journey-track::-webkit-scrollbar { height: 6px; }
+.journey-track::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+.milestone {
+  flex: 0 0 15.5rem; scroll-snap-align: start; position: relative; padding-top: 1.6rem; padding-right: 2rem;
+}
+.milestone::before {
+  content: ""; position: absolute; top: 0.42rem; left: 0; right: 2rem; height: 1px; background: var(--line);
+}
+.milestone::after {
+  content: ""; position: absolute; top: 0.22rem; left: 0; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--paper); border: 2px solid var(--rust);
+}
+.milestone:last-child { padding-right: 0; }
+.milestone:last-child::before { right: 0; }
+
+.logo-badge {
+  width: 2.5rem; height: 2.5rem; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-weight: 600; font-size: 0.95rem; color: #fff; margin-bottom: 0.9rem;
+}
+.milestone .when { color: var(--muted); font-size: 0.86rem; margin-bottom: 0.2rem; }
+.milestone h3 { font-size: 1.1rem; }
+.milestone .role { color: var(--ink-soft); font-size: 0.92rem; margin-top: 0.15rem; }
+.milestone .theme {
+  margin-top: 0.7rem; font-size: 0.86rem; color: var(--rust-deep); font-weight: 600;
+}
+
+.journey-arrow {
+  margin-top: 2.5rem; text-align: center; color: var(--muted); font-size: 0.95rem; letter-spacing: 0.02em;
+}
+
+/* ============================================
+   Work — overview cards
+   ============================================ */
+.work-list { display: flex; flex-direction: column; }
+.work-row {
+  display: grid; grid-template-columns: 3.5rem 1fr; gap: 1.5rem; padding: 2.2rem 0; border-top: 1px solid var(--line);
+}
+.work-row:first-child { border-top: none; }
+.work-row .num { font-family: var(--serif); font-size: 1.8rem; color: var(--line); }
+.work-row .ctx { font-size: 0.88rem; color: var(--rust-deep); font-weight: 600; margin-bottom: 0.4rem; }
+.work-row h3 { font-size: 1.4rem; margin-bottom: 0.7rem; }
+.work-row p { color: var(--ink-soft); max-width: var(--measure); }
+.work-row .read-more { display: inline-block; margin-top: 0.8rem; font-size: 0.95rem; }
+
+.work-mba {
+  margin-top: 1rem; padding: 2.5rem; background: var(--paper-raised); border: 1px solid var(--line); border-radius: 4px;
+}
+.work-mba + .work-mba { margin-top: 1.5rem; }
+.work-mba .ctx { font-size: 0.88rem; color: var(--gold); font-weight: 600; margin-bottom: 0.5rem; }
+.work-mba h3 { font-size: 1.6rem; margin-bottom: 0.9rem; }
+.work-mba p { color: var(--ink-soft); max-width: var(--measure); }
+.work-mba .read-more { display: inline-block; margin-top: 1rem; font-size: 0.95rem; font-weight: 600; }
+
+/* ============================================
+   Case study article
+   ============================================ */
+.article-head { padding: clamp(2.5rem, 6vw, 4rem) 0 1.5rem; }
+.article-head .ctx { font-size: 0.9rem; color: var(--rust-deep); font-weight: 600; margin-bottom: 1rem; }
+.article-head h1 { font-size: clamp(2rem, 4.5vw, 2.7rem); max-width: 24ch; }
+
+article.body { padding-bottom: 3.5rem; font-size: 1.08rem; }
+article.body h2 { font-family: var(--serif); font-size: 1.5rem; margin: 2.4rem 0 0.9rem; color: var(--rust-deep); }
+article.body p { color: var(--ink-soft); }
+article.body ul { color: var(--ink-soft); padding-left: 1.3rem; }
+article.body li { margin-bottom: 0.4rem; }
+
+article.body blockquote {
+  margin: 2rem 0; padding-left: 1.3rem; border-left: 3px solid var(--gold);
+  color: var(--ink); font-family: var(--serif); font-size: 1.25rem; font-style: italic;
+}
+
+.stat-row { display: flex; gap: 2rem; flex-wrap: wrap; margin: 1.8rem 0; }
+.stat { min-width: 8rem; }
+.stat .n { font-family: var(--serif); font-size: 1.8rem; color: var(--rust-deep); display: block; }
+.stat .l { font-size: 0.86rem; color: var(--muted); }
+
+.back-link { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.95rem; }
+
+/* ============================================
+   Thoughts / Subscribe
+   ============================================ */
+.thoughts-empty { color: var(--ink-soft); }
+.thoughts-empty .measure { margin-bottom: 1.2rem; }
+
+.subscribe-form { display: flex; gap: 0.75rem; margin-top: 1.75rem; max-width: 28rem; flex-wrap: wrap; }
+.subscribe-form input[type="email"] {
+  flex: 1 1 14rem; padding: 0.75rem 1rem; border: 1px solid var(--line); border-radius: 4px;
+  font-family: var(--sans); font-size: 1rem; background: var(--paper-raised); color: var(--ink);
+}
+.subscribe-form button {
+  padding: 0.75rem 1.5rem; border: none; border-radius: 4px; background: var(--ink); color: var(--paper);
+  font-family: var(--sans); font-size: 1rem; cursor: pointer;
+}
+.subscribe-form button:hover { background: var(--rust-deep); }
+.form-note { margin-top: 0.9rem; font-size: 0.88rem; color: var(--muted); }
+
+/* ============================================
+   Footer
+   ============================================ */
+.site-footer { border-top: 1px solid var(--line); padding: 2rem 0; color: var(--muted); font-size: 0.88rem; }
+.site-footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.footer-links { display: flex; gap: 1.5rem; }
