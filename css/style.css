@@ -92,22 +92,31 @@ p:last-child { margin-bottom: 0; }
 /* ============================================
    Hero
    ============================================ */
-.hero { padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem); }
+.hero { padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3.5rem); text-align: center; }
 .hero-name { font-size: clamp(2.4rem, 6vw, 3.8rem); }
 .hero-position {
   margin-top: 0.6rem; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--rust-deep); font-weight: 600;
 }
-.hero-lede { margin-top: 1.5rem; font-size: 1.18rem; color: var(--ink-soft); max-width: 42ch; }
+.hero-lede { margin: 1.5rem auto 0; font-size: 1.18rem; color: var(--ink-soft); max-width: 42ch; }
 
 /* ============================================
-   Logo strip (credibility row)
+   Logo ribbon (floats above the footer)
    ============================================ */
-.logo-strip { padding: 1.5rem 0 clamp(2.5rem, 6vw, 4rem); }
-.logo-strip .label {
-  font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;
-  margin-bottom: 1.5rem;
+.logo-ribbon {
+  overflow: hidden; padding: 2rem 0; background: var(--paper-raised);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
 }
-.logo-strip-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2rem; }
+.logo-ribbon-track {
+  display: flex; align-items: center; gap: 2.5rem; width: max-content;
+  animation: logo-ribbon-scroll 28s linear infinite;
+}
+.logo-ribbon:hover .logo-ribbon-track { animation-play-state: paused; }
+@keyframes logo-ribbon-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 
 /* ============================================
    Pathways (homepage)
@@ -147,17 +156,10 @@ section + section { border-top: 1px solid var(--line); }
 .journey-track::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
 
 .milestone {
-  flex: 0 0 15.5rem; scroll-snap-align: start; position: relative; padding-top: 1.6rem; padding-right: 2rem;
+  flex: 0 0 15.5rem; scroll-snap-align: start; padding: 1.5rem; margin-right: 1.25rem;
+  background: var(--paper-raised); border: 1px solid var(--line); border-radius: 8px;
 }
-.milestone::before {
-  content: ""; position: absolute; top: 0.42rem; left: 0; right: 2rem; height: 1px; background: var(--line);
-}
-.milestone::after {
-  content: ""; position: absolute; top: 0.22rem; left: 0; width: 9px; height: 9px; border-radius: 50%;
-  background: var(--paper); border: 2px solid var(--rust);
-}
-.milestone:last-child { padding-right: 0; }
-.milestone:last-child::before { right: 0; }
+.milestone:last-child { margin-right: 0; }
 
 .logo-tile {
   display: flex; align-items: center; justify-content: center;
@@ -168,7 +170,7 @@ section + section { border-top: 1px solid var(--line); }
 
 .logo-chip { display: flex; align-items: center; gap: 0.85rem; }
 .logo-chip .name { font-size: 0.92rem; color: var(--ink-soft); }
-.milestone .logo-tile { margin-bottom: 0.9rem; }
+.milestone .logo-tile { margin-bottom: 1.1rem; }
 .milestone .when { color: var(--muted); font-size: 0.86rem; margin-bottom: 0.2rem; }
 .milestone h3 { font-size: 1.1rem; }
 .milestone .role { color: var(--ink-soft); font-size: 0.92rem; margin-top: 0.15rem; }
